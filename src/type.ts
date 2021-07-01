@@ -1,2 +1,2 @@
 export const FSpawn = "FSpawn";
-export const Harvester = "harvester";
+export const harvester = "harvester";
