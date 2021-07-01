@@ -12,14 +12,16 @@ module.exports = {
     "prettier/@typescript-eslint",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: "tsconfig.json",
     sourceType: "module"
   },
-  plugins: ["@typescript-eslint", "import"],
+  plugins: ["@typescript-eslint", "import", "prettier"],
   settings: {
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"]
@@ -84,14 +86,6 @@ module.exports = {
     radix: "error",
     "sort-imports": "warn",
     "spaced-comment": "error",
-  }
-};
-
-module.exports = {
-  // other configuration omitted for brevity
-  extends: ["prettier", "prettier/@typescript-eslint", "plugin:prettier/recommended"],
-  plugins: ["prettier"],
-  rules: {
     "prettier/prettier": "error"
   }
 };
