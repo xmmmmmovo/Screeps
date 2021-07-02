@@ -1,2 +1,6 @@
 export const FSpawn = "FSpawn";
-export const harvester = "harvester";
+
+export enum Role {
+  harvester = "harvester",
+  upgrader = "upgrader"
+}

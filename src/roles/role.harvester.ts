@@ -1,3 +1,5 @@
+// harvester用于采收到spawn中进行存储
+// 类似于矿工
 export const roleHarvester = {
   run: function (creep: Creep) {
     // 剩余容量还够的话
