@@ -1,7 +1,7 @@
 import { roleHarvester } from "roles/harvester";
 import { ErrorMapper } from "utils/ErrorMapper";
-import { FSpawn, Role } from "type";
-import { getCreepAmounr, getSpawnRole } from "dispatch/role";
+import { FSpawn, Role } from "types";
+import { getCreepAmounr, getSpawnRole, updateCreep } from "dispatch/role";
 import { roleUpgrader } from "roles/upgrader";
 
 // When compiling TS to JS and bundling with rollup, the line numbers and file names in error messages change
@@ -10,6 +10,7 @@ export const loop = ErrorMapper.wrapLoop(() => {
   for (let name in Memory.creeps) {
     if (!Game.creeps[name]) {
       delete Memory.creeps[name];
+      updateCreep();
       console.log(`delete memory: ${name}`);
     }
   }
@@ -17,7 +18,7 @@ export const loop = ErrorMapper.wrapLoop(() => {
   // const creeps_amount = Object.keys(Game.creeps);
 
   // 自动调节生成
-  if (Game.spawns[FSpawn].spawning === null && getCreepAmounr() < 2) {
+  if (Game.spawns[FSpawn].spawning === null && getCreepAmounr() < 3) {
     const name = "creeps" + Game.time;
     const role = getSpawnRole();
     const mem: CreepMemory = {
@@ -37,6 +38,7 @@ export const loop = ErrorMapper.wrapLoop(() => {
       });
 
       if (ret === OK) {
+        updateCreep();
       }
     }
   }

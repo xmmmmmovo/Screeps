@@ -9,6 +9,7 @@ declare interface CreepMemory {
   room: string;
   working: boolean;
   upgrading?: boolean;
+  building?: boolean;
 }
 
 // Syntax for adding proprties to `global` (ex "global.log")
