@@ -23,6 +23,7 @@ export const removeByRole = function (role: Role, name: string): boolean {
 
 export const addByRole = function (role: Role, name: string, val: CreepMemory): boolean {
   const map = getRoleMap(role);
+  console.log("map" + JSON.stringify(map));
   if (map === null || map.has(name)) {
     return false;
   }

@@ -21,20 +21,26 @@ export const loop = ErrorMapper.wrapLoop(() => {
   if (Game.spawns[FSpawn].spawning === null && getCreepAmounr() < 2) {
     const name = "creeps" + Game.time;
     const role = getSpawnRole();
-    // const mem: CreepMemory = {
-    //   role: role as string,
-    //   room: "",
-    //   working: true
-    // };
+    const mem: CreepMemory = {
+      role: role as string,
+      room: "",
+      working: true
+    };
 
-    // console.log(`generate new creep: ${name}, role: ${role}`);
-    // const ret = Game.spawns[FSpawn].spawnCreep([WORK, CARRY, MOVE], name, {
-    //   memory: mem
-    // });
+    if (
+      Game.spawns[FSpawn].spawnCreep([WORK, CARRY, MOVE], name, {
+        dryRun: true
+      })
+    ) {
+      console.log(`generate new creep: ${name}, role: ${role}`);
+      const ret = Game.spawns[FSpawn].spawnCreep([WORK, CARRY, MOVE], name, {
+        memory: mem
+      });
 
-    // if (ret === OK) {
-    //   addByRole(role, name, mem);
-    // }
+      if (ret === OK) {
+        console.log("addrole" + addByRole(role, name, mem));
+      }
+    }
   }
 
   Object.entries(Game.creeps).forEach(([key, creep]) => {
