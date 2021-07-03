@@ -1,7 +1,7 @@
 import { build } from "./actions/build";
 import { harvest } from "./actions/harvest";
 
-export const builder = {
+export const roleBuilder = {
   run: function (creep: Creep) {
     if (creep.memory.building && creep.store[RESOURCE_ENERGY] == 0) {
       creep.memory.building = false;
