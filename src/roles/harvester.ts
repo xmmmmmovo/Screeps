@@ -1,6 +1,6 @@
 // harvester用于采收到spawn中进行存储
 
-import { harvest, storeToSpawn } from "./actions/action.harvest";
+import { harvest, storeToSpawn } from "./actions/harvest";
 
 // 类似于矿工
 export const roleHarvester = {

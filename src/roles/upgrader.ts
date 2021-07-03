@@ -1,5 +1,5 @@
-import { harvest } from "./actions/action.harvest";
-import { upgrade } from "./actions/action.upgrade";
+import { harvest } from "./actions/harvest";
+import { upgrade } from "./actions/upgrade";
 
 // upgrader主要用于采集energy source到controller进行升级
 // TODO: 采集满再去controller
