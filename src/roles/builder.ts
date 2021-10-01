@@ -1,21 +1,21 @@
-import { build } from "./actions/build";
-import { harvest } from "./actions/harvest";
+import { build } from './actions/build'
+import { harvest } from './actions/harvest'
 
 export const roleBuilder = {
   run: function (creep: Creep) {
-    if (creep.memory.building && creep.store[RESOURCE_ENERGY] == 0) {
-      creep.memory.building = false;
-      creep.say("🔄 harvest");
+    if (creep.memory.working && creep.store[RESOURCE_ENERGY] == 0) {
+      creep.memory.working = false
+      creep.say('🔄 harvest')
     }
-    if (!creep.memory.building && creep.store.getFreeCapacity() == 0) {
-      creep.memory.building = true;
-      creep.say("🚧 build");
+    if (!creep.memory.working && creep.store.getFreeCapacity() == 0) {
+      creep.memory.working = true
+      creep.say('🚧 build')
     }
 
-    if (creep.memory.building) {
-      build(creep);
+    if (creep.memory.working) {
+      build(creep)
     } else {
-      harvest(creep);
+      harvest(creep)
     }
   }
-};
+}
