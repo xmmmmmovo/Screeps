@@ -32,12 +32,6 @@ module.exports = {
     '@typescript-eslint/consistent-type-assertions': 'error',
     '@typescript-eslint/consistent-type-definitions': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/explicit-member-accessibility': [
-      'error',
-      {
-        accessibility: 'explicit'
-      }
-    ],
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-parameter-properties': 'off',
     '@typescript-eslint/no-unused-expressions': 'error',

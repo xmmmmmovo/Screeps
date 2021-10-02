@@ -9,12 +9,9 @@ This project is generate from [screeps-typescript-starter](https://github.com/sc
 ### Install Dependency
 
 ```bash
+# npm
 npm install
-```
-
-or
-
-```bash
+# yarn
 yarn install
 ```
 

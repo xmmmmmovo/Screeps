@@ -1,5 +1,8 @@
+type Task = (...params: any[]) => void
+type Params = any[]
+
 // Memory extension samples
-declare interface Memory {
+interface Memory {
   stats: {
     time: number
     gcl: {
@@ -26,6 +29,13 @@ declare interface Memory {
   }
 }
 
-declare interface CreepMemory {
-  role: string
+export enum Status {
+  IDLE,
+  WORK
+}
+
+interface CreepMemory {
+  status: Status
+  task: Task
+  params: Params
 }

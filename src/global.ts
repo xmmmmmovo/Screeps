@@ -1,0 +1,1 @@
+export const Spawn = 'BaseSpawn'

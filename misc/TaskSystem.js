@@ -1,22 +1,22 @@
-//使用方法：新建一个任务后添加到组内，AddTaskToGroup添加任务到任务组，通过GetTaskOfGroup(Group)获取优先级最高的任务,想更改任务优先级可以使用ReSorctAfterGetTwoForkedTreeFirst(Group,Task,Weight)
-//作者没用过 根据之前写的任务系统写的 有Bug上报
+// 使用方法：新建一个任务后添加到组内，AddTaskToGroup添加任务到任务组，通过GetTaskOfGroup(Group)获取优先级最高的任务,想更改任务优先级可以使用ReSorctAfterGetTwoForkedTreeFirst(Group,Task,Weight)
+// 作者没用过 根据之前写的任务系统写的 有Bug上报
 
-var TaskSystem = {
-  //新建一个任务 任务名 权重 任务相关Object 任务类型 (通过GetType(Num)获取 Num对应TaskType) 是否可以被替换(当组内有优先级比此任务高的替换) 任务所执行的方法
+let TaskSystem = {
+  // 新建一个任务 任务名 权重 任务相关Object 任务类型 (通过GetType(Num)获取 Num对应TaskType) 是否可以被替换(当组内有优先级比此任务高的替换) 任务所执行的方法
   CreateATask(TaskName, Weight, TaskObj, TaskType, IsCanRePlaceTask, QuestDoing) {
-    var Task = new Object()
-    //任务名
+    let Task = new Object()
+    // 任务名
     Task.Name = TaskName
-    //任务权重
+    // 任务权重
     Task.Weight = Weight
-    //任务相关Object
+    // 任务相关Object
     Task.Obj = TaskObj
-    //任务类型
+    // 任务类型
     Task.Type = TaskType
     Task.IsCanRePlaceTask = IsCanRePlaceTask
     Task.QuestDoing = QuestDoing
   },
-  //获得任务枚举类型
+  // 获得任务枚举类型
   GetType(Num) {
     TaskType.forEach(element => {
       if (Enum.GetValues(typeof element) == Num) {
@@ -24,15 +24,15 @@ var TaskSystem = {
       }
     })
   },
-  //执行任务
+  // 执行任务
   QuestDoing(Task, TaskObj) {
     Task.QuestDoing(TaskObj)
   },
-  //添加一个任务到组内
+  // 添加一个任务到组内
   AddTaskToGroup(Group, Task) {
     AddToTwoForkedTree(Group, Task)
   },
-  //获得组内优先级最高的任务
+  // 获得组内优先级最高的任务
   GetTaskOfGroup(Group) {
     if (Group.length > 0) {
       let GetTask = Group[0]
@@ -44,7 +44,7 @@ var TaskSystem = {
     }
     return
   },
-  //刷新任务优先级后重排序
+  // 刷新任务优先级后重排序
   ReSorctAfterGetTwoForkedTreeFirst(Group, Task, Weight) {
     ReSorctAfterChangeTaskWeight(Group, Task, Weight)
   }
@@ -73,7 +73,7 @@ function ReSorctAfterChangeTaskWeight(Group, Task, Weight) {
   }
 }
 function AddToTwoForkedTree(Group, ToAddObj) {
-  var Index = Group.length
+  let Index = Group.length
   Group[Group.length] = ToAddObj
   TwoForkedTreeSort(Group, Index)
 }
@@ -81,9 +81,9 @@ function TwoForkedTreeSort(Group, Index) {
   if (Index == 0) {
     return
   }
-  var Parent = parseInt(Index / 2 - 1)
+  let Parent = parseInt(Index / 2 - 1)
   if (Group[Parent] == undefined || Group[Index].Weight > Group[Parent].Weight) {
-    var exchange = Group[Parent]
+    let exchange = Group[Parent]
     Group[Parent] = Group[Index]
     Group[Index] = exchange
     Index = Parent

@@ -1,4 +1,4 @@
-export function exportStats() {
+export function exportStats(): void {
   // every 10 ticks run once
   if (Game.time % 10) return
 
@@ -19,9 +19,9 @@ export function exportStats() {
   }
 
   // Collect room stats
-  for (let roomName in Game.rooms) {
-    let room = Game.rooms[roomName]
-    let isMyRoom = room.controller ? room.controller.my : false
+  for (const roomName in Game.rooms) {
+    const room = Game.rooms[roomName]
+    const isMyRoom = room.controller ? room.controller.my : false
     if (isMyRoom) {
       Memory.stats.rooms[roomName] = {
         storageEnergy: room.storage ? room.storage.store.energy : 0,
