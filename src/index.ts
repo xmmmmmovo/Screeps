@@ -1,8 +1,5 @@
 // Memory extension samples
 declare interface Memory {
-  uuid: number
-  log: any
-  findAllocateCnt: { [key: string]: number }
   stats: {
     time: number
     gcl: {
@@ -31,7 +28,4 @@ declare interface Memory {
 
 declare interface CreepMemory {
   role: string
-  room: string
-  working: boolean
-  target: string
 }

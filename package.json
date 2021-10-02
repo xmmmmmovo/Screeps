@@ -1,6 +1,6 @@
 {
-  "name": "screeps-typescript-starter",
-  "version": "3.0.0",
+  "name": "screeps-excutor",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "//": "If you add or change the names of destinations in screeps.json, make sure you update these scripts to reflect the changes",
@@ -19,8 +19,8 @@
     "watch-season": "rollup -cw --environment DEST:season",
     "watch-sim": "rollup -cw --environment DEST:sim"
   },
-  "author": "",
-  "license": "MIT",
+  "author": "xmmmmmovo",
+  "license": "Apache2.0",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.1.0",
     "@rollup/plugin-node-resolve": "^7.1.3",
