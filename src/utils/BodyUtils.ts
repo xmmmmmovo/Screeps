@@ -1,3 +1,22 @@
+export type BodyMapping = Readonly<
+  Partial<
+    {
+      [key in BodyPartConstant]: number
+    }
+  >
+>
+
+export function bodyGenerator(body: BodyMapping): BodyPartConstant[] {
+  return _.reduce(
+    body,
+    (result: BodyPartConstant[], value: number, key: BodyPartConstant) => {
+      result.push(...Array(value).fill(key))
+      return result
+    },
+    Array<BodyPartConstant>()
+  )
+}
+
 const regExp = /([mwcarhit])([0-9]+)/g
 const mulRegExp = /([*])([0-9]+)/g
 const checkRegExp = /^([mwcarhit*][0-9]+)*$/

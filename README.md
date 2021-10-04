@@ -23,7 +23,7 @@ Copy config file.
 cp screeps.json.sample screeps.json
 ```
 
-And then you should get your own (token)[https://screeps.com/a/#!/account/auth-tokens] from screeps.com and write it to `screeps.json`.
+And then you should get your own [token](https://screeps.com/a/#!/account/auth-tokens) from screeps.com and write it to `screeps.json`.
 
 Push to your room.
 
