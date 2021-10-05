@@ -4,9 +4,12 @@ export function harvest(creep: Creep): void {
   let counter = Memory.dstCounter.source[creep.room.name]
   if (counter === undefined) {
     Memory.dstCounter.source[creep.room.name] = {}
+    counter = {}
   }
-  counter = {}
-  if (creep.memory.dst === null || creep.memory.dst.type !== SourceConstant) {
+  if (
+    (creep.memory.dst === null || creep.memory.dst.type !== SourceConstant) &&
+    Object.keys(creep.memory.dset).length === 0
+  ) {
     const sources = creep.room.find(FIND_SOURCES)
     _.every(sources, (source): boolean => {
       if (counter[source.id] === undefined || counter[source.id] < 2) {
@@ -28,9 +31,26 @@ export function harvest(creep: Creep): void {
       return true
     })
   } else {
-    if (creep.harvest(Game.getObjectById(creep.memory.dst.target) as Source) === ERR_NOT_IN_RANGE) {
+    if (creep.memory.dst === null) return
+    if (creep.memory.dst.type !== SourceConstant) {
+      const dstObj = Game.getObjectById(Object.keys(creep.memory.dset)[0]) as Source
+      creep.memory.dst = {
+        type: SourceConstant,
+        pos: dstObj.pos,
+        target: dstObj.id
+      }
+      const { x, y } = dstObj.pos
+      moveAndHarvest(creep, dstObj, x, y)
+    } else {
+      const dstObj = Game.getObjectById(creep.memory.dst.target)
       const { x, y } = creep.memory.dst.pos
-      creep.moveTo(x, y, { visualizePathStyle: { stroke: '#ffaa00' } })
+      moveAndHarvest(creep, dstObj as Source, x, y)
     }
+  }
+}
+
+function moveAndHarvest(creep: Creep, obj: Source, x: number, y: number) {
+  if (creep.harvest(obj) === ERR_NOT_IN_RANGE) {
+    creep.moveTo(x, y, { visualizePathStyle: { stroke: '#ffaa00' } })
   }
 }

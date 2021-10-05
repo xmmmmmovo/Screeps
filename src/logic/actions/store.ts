@@ -21,9 +21,8 @@ export const storeToSpawnContainer = function (creep: Creep): void {
       }
     }
   } else {
-    if (
-      creep.transfer(Game.getObjectById(creep.memory.dst.target) as Structure, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE
-    ) {
+    const obj = Game.getObjectById(creep.memory.dst.target) as Structure
+    if (creep.transfer(obj, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
       const { x, y } = creep.memory.dst.pos
       creep.moveTo(x, y, { visualizePathStyle: { stroke: '#ffffff' } })
     }
