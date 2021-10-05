@@ -1,13 +1,3 @@
-import { BodyMapping } from 'utils'
-
-export const SpawnName = 'BaseSpawn'
-
-export const BaseBody: BodyMapping = {
-  work: 1,
-  move: 1,
-  carry: 1
-}
-
 export enum Status {
   IDLE,
   WORK
@@ -20,10 +10,23 @@ export enum Role {
   UPGRADER
 }
 
+export type TDstType = {
+  [key in StructureConstant | ResourceConstant | SourceConstant]: {
+    [roomName: string]: {
+      [index in Id<Structure | Source | Resource> | any]: number
+    }
+  }
+}
+
+export type SourceConstant = 'source'
+export const SourceConstant: SourceConstant = 'source'
+
 declare global {
   // Memory extension samples
   interface Memory {
+    init: boolean
     uuid: number
+    dstCounter: TDstType
     stats: {
       time: number
       gcl: {
@@ -53,7 +56,17 @@ declare global {
   interface CreepMemory {
     status: Status
     role: Role
-    // task: Tasks
-    // params: Params
+    dst: null | {
+      type: StructureConstant | ResourceConstant | SourceConstant
+      pos: RoomPosition
+      // 无法序列化游戏object
+      target: Id<Source | Structure | Resource>
+    }
+    dset: {
+      [id in Id<Source | Structure | Resource> | any]: {
+        rname: string
+        type: StructureConstant | ResourceConstant | SourceConstant
+      }
+    }
   }
 }

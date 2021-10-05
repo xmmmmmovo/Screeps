@@ -1,4 +1,4 @@
-import { storeToSpawn } from './store'
+import { storeToSpawnContainer } from './store'
 
 export const build = function (creep: Creep) {
   const targets = creep.room.find(FIND_CONSTRUCTION_SITES)
@@ -7,6 +7,6 @@ export const build = function (creep: Creep) {
       creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ffffff' } })
     }
   } else {
-    storeToSpawn(creep)
+    storeToSpawnContainer(creep)
   }
 }

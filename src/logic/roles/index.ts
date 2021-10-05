@@ -1,3 +1,3 @@
-interface IRole {
-  run(creep: Creep): void
-}
+export * from './builder'
+export * from './harvester'
+export * from './upgrader'

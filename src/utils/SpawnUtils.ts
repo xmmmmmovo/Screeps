@@ -1,3 +1,4 @@
+import { BaseBody, SpawnName } from 'config'
 import { Role, Status } from 'global'
 import { Dictionary } from 'lodash'
 import { BodyMapping, bodyGenerator } from 'utils/BodyUtils'
@@ -11,7 +12,9 @@ export function spawnCreep(
   body: BodyPartConstant[],
   memory: CreepMemory = {
     status: Status.IDLE,
-    role: Role.HAVESTER
+    role: Role.HAVESTER,
+    dst: null,
+    dset: {}
   },
   name: string = nameGenerator(spawn)
 ): number {
@@ -39,16 +42,28 @@ export function spawnTask(
   role: Role,
   status: Status,
   spawnName: string,
+  upperBound: number,
   body: BodyMapping
 ): boolean {
-  if (counter[role] === undefined || counter[role] < 2) {
+  const spawnPoint = getSpawn(spawnName)
+  if ((counter[role] === undefined || counter[role] < upperBound) && spawnPoint.spawning === null) {
     if (
-      spawnCreep(getSpawn(spawnName), bodyGenerator(body), {
+      spawnCreep(spawnPoint, bodyGenerator(body), {
         role,
-        status
+        status,
+        dst: null,
+        dset: {}
       }) === ERR_NOT_ENOUGH_ENERGY
     )
       return false
+    return true
   }
-  return true
+  return false
+}
+
+export function spawnDispatch(): void {
+  const counter = _.countBy(Memory.creeps, 'role')
+  if (spawnTask(counter, Role.HAVESTER, Status.IDLE, SpawnName, 3, BaseBody)) return
+  if (spawnTask(counter, Role.BUILDER, Status.IDLE, SpawnName, 2, BaseBody)) return
+  if (spawnTask(counter, Role.UPGRADER, Status.IDLE, SpawnName, 1, BaseBody)) return
 }
