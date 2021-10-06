@@ -60,10 +60,10 @@ declare global {
       type: StructureConstant | ResourceConstant | SourceConstant
       pos: RoomPosition
       // 无法序列化游戏object
-      target: Id<Source | Structure | Resource>
+      target: Id<Source | Structure | Resource | Deposit>
     }
     dset: {
-      [id in Id<Source | Structure | Resource> | any]: {
+      [id in Id<Source | Structure | Resource | Deposit> | any]: {
         rname: string
         type: StructureConstant | ResourceConstant | SourceConstant
       }

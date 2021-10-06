@@ -63,7 +63,7 @@ export function spawnTask(
 
 export function spawnDispatch(): void {
   const counter = _.countBy(Memory.creeps, 'role')
-  if (spawnTask(counter, Role.HAVESTER, Status.IDLE, SpawnName, 3, BaseBody)) return
+  if (spawnTask(counter, Role.HAVESTER, Status.IDLE, SpawnName, 1, BaseBody)) return
+  if (spawnTask(counter, Role.UPGRADER, Status.IDLE, SpawnName, 3, BaseBody)) return
   if (spawnTask(counter, Role.BUILDER, Status.IDLE, SpawnName, 2, BaseBody)) return
-  if (spawnTask(counter, Role.UPGRADER, Status.IDLE, SpawnName, 1, BaseBody)) return
 }

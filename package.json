@@ -18,7 +18,8 @@
     "watch-main": "rollup -cw --environment DEST:main",
     "watch-pserver": "rollup -cw --environment DEST:pserver",
     "watch-season": "rollup -cw --environment DEST:season",
-    "watch-sim": "rollup -cw --environment DEST:sim"
+    "watch-sim": "rollup -cw --environment DEST:sim",
+    "cloc": "cloc . --exclude-dir=node_modules,dist,misc"
   },
   "author": "xmmmmmovo",
   "license": "Apache2.0",

@@ -31,25 +31,30 @@ export function harvest(creep: Creep): void {
       return true
     })
   } else {
-    if (creep.memory.dst === null) return
-    if (creep.memory.dst.type !== SourceConstant) {
-      const dstObj = Game.getObjectById(Object.keys(creep.memory.dset)[0]) as Source
-      creep.memory.dst = {
-        type: SourceConstant,
-        pos: dstObj.pos,
-        target: dstObj.id
-      }
-      const { x, y } = dstObj.pos
-      moveAndHarvest(creep, dstObj, x, y)
-    } else {
-      const dstObj = Game.getObjectById(creep.memory.dst.target)
-      const { x, y } = creep.memory.dst.pos
-      moveAndHarvest(creep, dstObj as Source, x, y)
-    }
+    changeStatusHarvest(creep, SourceConstant)
   }
 }
 
-function moveAndHarvest(creep: Creep, obj: Source, x: number, y: number) {
+export function changeStatusHarvest(creep: Creep, type: SourceConstant | Deposit): void {
+  // 交给下一个tick处理
+  if (creep.memory.dst === null) return
+  if (creep.memory.dst.type !== SourceConstant) {
+    const dstObj = Game.getObjectById(Object.keys(creep.memory.dset)[0]) as Source
+    creep.memory.dst = {
+      type: SourceConstant,
+      pos: dstObj.pos,
+      target: dstObj.id
+    }
+    const { x, y } = dstObj.pos
+    moveAndHarvest(creep, dstObj, x, y)
+  } else {
+    const dstObj = Game.getObjectById(creep.memory.dst.target)
+    const { x, y } = creep.memory.dst.pos
+    moveAndHarvest(creep, dstObj as Source, x, y)
+  }
+}
+
+function moveAndHarvest(creep: Creep, obj: Source | Deposit, x: number, y: number) {
   if (creep.harvest(obj) === ERR_NOT_IN_RANGE) {
     creep.moveTo(x, y, { visualizePathStyle: { stroke: '#ffaa00' } })
   }

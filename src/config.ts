@@ -1,7 +1,7 @@
 import { BodyMapping } from 'utils'
 import { TDstType } from 'global'
 
-export const SpawnName = 'BaseSpawn'
+export const SpawnName = 'Base'
 
 export const BaseBody: BodyMapping = {
   work: 1,

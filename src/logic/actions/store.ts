@@ -1,6 +1,7 @@
 import { SourceConstant } from 'global'
+import { changeStatusHarvest, harvest } from './harvest'
 
-export const storeToSpawnContainer = function (creep: Creep): void {
+export function storeToSpawnContainer(creep: Creep): void {
   if (creep.memory.dst === null || creep.memory.dst.type === SourceConstant) {
     const targets = creep.room.find(FIND_STRUCTURES, {
       filter: structure => {
@@ -26,5 +27,29 @@ export const storeToSpawnContainer = function (creep: Creep): void {
       const { x, y } = creep.memory.dst.pos
       creep.moveTo(x, y, { visualizePathStyle: { stroke: '#ffffff' } })
     }
+  }
+}
+
+export function fetchFromSpawnContainer(creep: Creep): void {
+  if (creep.memory.dst === null || creep.memory.dst.type === STRUCTURE_CONTROLLER) {
+    const targets = creep.room.find(FIND_STRUCTURES, {
+      filter: structure => {
+        return (
+          (structure.structureType === STRUCTURE_EXTENSION || structure.structureType === STRUCTURE_CONTAINER) &&
+          structure.store.getUsedCapacity(RESOURCE_ENERGY) > 0
+        )
+      }
+    })
+    if (targets.length > 0) {
+      creep.memory.dst = {
+        type: targets[0].structureType,
+        pos: targets[0].pos,
+        target: targets[0].id
+      }
+    } else {
+      harvest(creep)
+    }
+  } else {
+    changeStatusHarvest(creep, SourceConstant)
   }
 }
