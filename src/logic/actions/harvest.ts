@@ -12,7 +12,7 @@ export function harvest(creep: Creep): void {
   ) {
     const sources = creep.room.find(FIND_SOURCES)
     _.every(sources, (source): boolean => {
-      if (counter[source.id] === undefined || counter[source.id] < 2) {
+      if (counter[source.id] === undefined || counter[source.id] < 3) {
         if (counter[source.id] === undefined) {
           Memory.dstCounter.source[creep.room.name][source.id] = 1
         } else {

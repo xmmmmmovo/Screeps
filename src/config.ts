@@ -14,8 +14,6 @@ if (Memory.init === undefined) {
   Memory.init = true
   Memory.uuid = 1
   Memory.dstCounter = {
-    source: {},
-    spawn: {},
-    container: {}
+    source: {}
   } as TDstType
 }

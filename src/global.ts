@@ -18,6 +18,8 @@ export type TDstType = {
   }
 }
 
+export type TTarget = Id<Source | Structure | Resource | Deposit | ConstructionSite<BuildableStructureConstant>>
+
 export type SourceConstant = 'source'
 export const SourceConstant: SourceConstant = 'source'
 
@@ -60,10 +62,10 @@ declare global {
       type: StructureConstant | ResourceConstant | SourceConstant
       pos: RoomPosition
       // 无法序列化游戏object
-      target: Id<Source | Structure | Resource | Deposit>
+      target: TTarget
     }
     dset: {
-      [id in Id<Source | Structure | Resource | Deposit> | any]: {
+      [id in TTarget | any]: {
         rname: string
         type: StructureConstant | ResourceConstant | SourceConstant
       }
