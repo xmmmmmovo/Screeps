@@ -1,3 +1,3 @@
-export function log(): void {
-  console.log('')
+export function log(content: string): void {
+  console.log(content)
 }

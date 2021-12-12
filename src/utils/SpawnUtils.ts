@@ -1,4 +1,4 @@
-import { BaseBody, SpawnName } from 'config'
+import { BaseBody, builderUpperBound, havesterUpperBound, SpawnName, upgraderUpperBound } from 'config'
 import { Role, Status } from 'global'
 import { Dictionary } from 'lodash'
 import { BodyMapping, bodyGenerator } from 'utils/BodyUtils'
@@ -63,7 +63,7 @@ export function spawnTask(
 
 export function spawnDispatch(): void {
   const counter = _.countBy(Memory.creeps, 'role')
-  if (spawnTask(counter, Role.HAVESTER, Status.IDLE, SpawnName, 6, BaseBody)) return
-  if (spawnTask(counter, Role.UPGRADER, Status.IDLE, SpawnName, 3, BaseBody)) return
-  if (spawnTask(counter, Role.BUILDER, Status.IDLE, SpawnName, 2, BaseBody)) return
+  if (spawnTask(counter, Role.HAVESTER, Status.IDLE, SpawnName, havesterUpperBound, BaseBody)) return
+  if (spawnTask(counter, Role.UPGRADER, Status.IDLE, SpawnName, upgraderUpperBound, BaseBody)) return
+  if (spawnTask(counter, Role.BUILDER, Status.IDLE, SpawnName, builderUpperBound, BaseBody)) return
 }

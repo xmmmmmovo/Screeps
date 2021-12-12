@@ -24,9 +24,13 @@ export const build = function (creep: Creep): void {
       }
     }
   } else {
-    const dstObj = Game.getObjectById(creep.memory.dst.target)
+    const dstObj = Game.getObjectById(creep.memory.dst.target) as ConstructionSite
+    if (dstObj === null) {
+      creep.memory.dst = null
+      return
+    }
     const { x, y } = creep.memory.dst.pos
-    if (creep.build(dstObj as ConstructionSite) === ERR_NOT_IN_RANGE) {
+    if (creep.build(dstObj) === ERR_NOT_IN_RANGE) {
       creep.moveTo(x, y, { visualizePathStyle: { stroke: '#ffaa00' } })
     }
   }

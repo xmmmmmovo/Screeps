@@ -9,6 +9,11 @@ export const BaseBody: BodyMapping = {
   carry: 1
 }
 
+export const sourceUpperBound = 3
+export const havesterUpperBound = 6
+export const upgraderUpperBound = 1
+export const builderUpperBound = 4
+
 if (Memory.init === undefined) {
   console.log('init memory')
   Memory.init = true

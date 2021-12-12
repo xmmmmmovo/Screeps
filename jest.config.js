@@ -1,17 +1,16 @@
 /* eslint-disable */
-const path = require('path')
-
+const { pathsToModuleNameMapper } = require('ts-jest/utils')
+const { compilerOptions } = require('./tsconfig')
 
 module.exports = {
-  rootDir: path.resolve(__dirname),
+  roots: ['<rootDir>'],
   preset: 'ts-jest',
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
-  testEnvironment: 'node',
   transform: {
     '^.+\\.tsx?$': 'ts-jest'
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   // 测试文件
-  testMatch: ['<rootDir>/test/unit/*.spec.ts?(x)']
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths || {}, { prefix: '<rootDir>/' })
 }
