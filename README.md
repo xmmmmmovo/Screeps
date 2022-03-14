@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/badge/language-typescript-blue.svg)
 
-This project is generate from [screeps-typescript-starter](https://github.com/screepers/screeps-typescript-starter).It's really an excellent template for newbie in this game.
+This project is generated from [screeps-typescript-starter](https://github.com/screepers/screeps-typescript-starter). It's really an excellent template for newbie in this game.
 
 ## Getting Started
 

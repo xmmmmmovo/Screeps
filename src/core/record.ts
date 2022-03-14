@@ -1,3 +1,7 @@
+/**
+ * 用于grafana监控
+ * @returns void
+ */
 export function exportStats(): void {
   // every 10 ticks run once
   if (Game.time % 10) return
