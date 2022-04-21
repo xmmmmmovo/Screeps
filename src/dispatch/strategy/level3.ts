@@ -1,4 +1,4 @@
-import { Strategy } from 'strategy'
+import { Strategy } from 'dispatch/strategy'
 
 export const level3: Strategy = {
   levelUpperBound: 3,

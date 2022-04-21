@@ -14,7 +14,6 @@ declare global {
   // Memory extension samples
   interface Memory {
     init: boolean
-    uuid: number
     stats: {
       time: number
       gcl: {

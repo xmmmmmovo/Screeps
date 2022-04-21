@@ -22,12 +22,11 @@ export function spawnCreep(
   }
   const res = spawn.spawnCreep(body, name, { memory })
   if (res === OK) {
-    Memory.uuid++
     console.log(`creep ${name} spawned at ${Game.time}`)
   }
   return res
 }
 
 export function nameGenerator(spawn: StructureSpawn): string {
-  return `creep ${Memory.uuid} ${spawn.room.name}`
+  return `creep ${Game.time} ${spawn.room.name}`
 }

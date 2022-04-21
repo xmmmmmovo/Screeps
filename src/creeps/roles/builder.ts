@@ -1,5 +1,5 @@
 import { Status } from 'global'
-import { build, fetchFromSpawnContainer } from 'logic/actions'
+import { build, fetchFromSpawnContainer } from 'creeps/actions'
 
 export const roleBuilder = {
   run(creep: Creep): void {

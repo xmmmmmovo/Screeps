@@ -1,5 +1,5 @@
 import { Status } from 'global'
-import { fetchFromSpawnContainer, upgrade } from 'logic/actions'
+import { fetchFromSpawnContainer, upgrade } from 'dispatch/tasks'
 
 // upgrader主要用于采集energy source到controller进行升级
 export const roleUpgrader = {

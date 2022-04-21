@@ -39,6 +39,12 @@ module.exports = {
     '@typescript-eslint/prefer-for-of': 'error',
     '@typescript-eslint/space-within-parens': ['off', 'never'],
     '@typescript-eslint/unified-signatures': 'error',
+    '@typescript-eslint/no-shadow': [
+      'error',
+      {
+        hoist: 'all'
+      }
+    ],
     'arrow-parens': ['off', 'as-needed'],
     camelcase: 'error',
     complexity: 'off',
@@ -60,12 +66,6 @@ module.exports = {
     'no-invalid-this': 'off',
     'no-multiple-empty-lines': 'off',
     'no-new-wrappers': 'error',
-    'no-shadow': [
-      'error',
-      {
-        hoist: 'all'
-      }
-    ],
     'no-throw-literal': 'error',
     'no-trailing-spaces': 'off',
     'no-undef-init': 'error',
