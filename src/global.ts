@@ -38,10 +38,17 @@ declare global {
         used: number
       }
     }
+    mission: Record<string, unknown>
   }
 
   interface CreepMemory {
     status: Status
     role: Role
   }
+}
+
+if (Memory.init === undefined) {
+  console.log('init memory')
+  Memory.init = true
+  Memory.mission = {}
 }
