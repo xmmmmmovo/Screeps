@@ -7,10 +7,7 @@ export function getSpawn(name: string): StructureSpawn {
 export function spawnCreep(
   spawn: StructureSpawn,
   body: BodyPartConstant[],
-  memory: CreepMemory = {
-    status: Status.IDLE,
-    role: Role.HAVESTER
-  },
+  memory: CreepMemory,
   name: string = nameGenerator(spawn)
 ): number {
   if (

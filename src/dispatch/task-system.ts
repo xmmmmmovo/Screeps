@@ -2,12 +2,6 @@ export interface ITaskSystem {
   createTask(): void
 }
 
-export const TaskSystem: ITaskSystem = {
-  createTask(): void {
-    throw new Error('Function not implemented.')
-  }
-}
-
 export enum TaskType {
   DELIVER,
   WORK
@@ -26,3 +20,11 @@ export interface Task {
   type: TaskType
   status: TaskStatus
 }
+
+class TaskSystemImpl implements ITaskSystem {
+  createTask(): void {
+    throw new Error('Method not implemented.')
+  }
+}
+
+export const TaskSystem = new TaskSystemImpl()

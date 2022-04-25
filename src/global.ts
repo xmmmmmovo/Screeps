@@ -44,6 +44,7 @@ declare global {
   interface CreepMemory {
     status: Status
     role: Role
+    path?: RoomPosition[]
   }
 }
 

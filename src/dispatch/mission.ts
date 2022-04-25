@@ -1,12 +1,23 @@
+import { logger } from 'core/logger'
+
 interface IMissionSystem {
   registerMission(missionName: string, runner: () => void): boolean
 }
 
 class MissionSystemImpl implements IMissionSystem {
-  private mission: Record<string, () => void> = {}
+  private missionMap = new Map<string, () => void>()
 
   registerMission(missionName: string, runner: () => void): boolean {
-    throw new Error('Function not implemented.')
+    if (this.missionMap.has(missionName)) return false
+    this.missionMap.set(missionName, runner)
+    return true
+  }
+
+  excute(): void {
+    _.forEach(this.missionMap, (fn: () => void, key: string | undefined) => {
+      logger.info(`${key as string} mission is runnning`)
+      fn()
+    })
   }
 }
 
