@@ -5,3 +5,11 @@ declare namespace NodeJS {
     _: _.LoDashStatic
   }
 }
+
+interface Creep {
+  customMove(target: RoomPosition, range: number, ignoreCreep: boolean): ScreepsReturnCode
+}
+
+interface PowerCreep {
+  customMove(target: RoomPosition, range: number, ignoreCreep: boolean): ScreepsReturnCode
+}

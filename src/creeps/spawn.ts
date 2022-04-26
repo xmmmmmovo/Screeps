@@ -1,4 +1,4 @@
-import { Role, Status } from 'global'
+import { Status } from 'global'
 
 export function getSpawn(name: string): StructureSpawn {
   return Game.spawns[name]

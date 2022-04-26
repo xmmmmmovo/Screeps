@@ -21,9 +21,9 @@ export const loop = ErrorMapper.wrapLoop(() => {
     return
   }
 
-  _.any(strategyList, s => {
-    if (s.levelUpperBound < controller.level) {
-      s.run()
+  _.any(strategyList, strategy => {
+    if (strategy.levelUpperBound <= controller.level) {
+      strategy.run()
       return false
     }
     return true

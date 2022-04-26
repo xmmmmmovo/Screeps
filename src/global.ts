@@ -1,13 +1,8 @@
+import { Role } from 'creeps/roles'
+
 export enum Status {
   IDLE,
   WORK
-}
-
-export enum Role {
-  HAVESTER,
-  BUILDER,
-  CARRIER,
-  UPGRADER
 }
 
 declare global {
@@ -42,6 +37,12 @@ declare global {
   }
 
   interface CreepMemory {
+    status: Status
+    role: Role
+    path?: RoomPosition[]
+  }
+
+  interface PowerCreepMemory {
     status: Status
     role: Role
     path?: RoomPosition[]

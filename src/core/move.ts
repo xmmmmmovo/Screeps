@@ -1,8 +1,10 @@
-interface Creep {
-  customMove(target: RoomPosition, range: number, ignoreCreep: boolean): ScreepsReturnCode
-}
+import { Role } from 'creeps/roles'
 
-Creep.prototype.customMove = function (target: RoomPosition, range = 1, ignoreCreep = true): ScreepsReturnCode {
+PowerCreep.prototype.customMove = Creep.prototype.customMove = function (
+  target: RoomPosition,
+  range = 1,
+  ignoreCreep = true
+): ScreepsReturnCode {
   if (!this.memory.path || !this.memory.path.length) {
     const res = PathFinder.search(
       this.pos,
@@ -58,17 +60,17 @@ Creep.prototype.customMove = function (target: RoomPosition, range = 1, ignoreCr
       let obstacle: Creep[] | PowerCreep[] = this.room.lookForAt(LOOK_CREEPS, next.x, next.y)
       if (!obstacle.length) obstacle = this.room.lookForAt(LOOK_POWER_CREEPS, next.x, next.y)
       if (obstacle.length) {
-        if (this.memory.state == obstacle[0].memory.state || obstacle[0].memory.state == 'Harvest') {
-          obstacle[0].memory.path = null
+        if (this.memory.role === obstacle[0].memory.role || obstacle[0].memory.role === Role.MINER) {
+          delete obstacle[0].memory.path
           obstacle[0].customMove(target, range - 1 <= 1 ? 1 : range - 1, false)
         } else {
-          const dir = obstacle[0].pos.getDirectionTo(curr.x, curr.y)
-          obstacle[0].move(dir)
+          const dirtmp = obstacle[0].pos.getDirectionTo(curr.x, curr.y)
+          obstacle[0].move(dirtmp)
           if (obstacle[0].memory.path && obstacle[0].memory.path.length) obstacle[0].memory.path.shift()
         }
       }
-      const dir = creep.pos.getDirectionTo(creep.memory.path[0].x, creep.memory.path[0].y)
-      return creep.move(dir)
+      const dir = this.pos.getDirectionTo(this.memory.path[0].x, this.memory.path[0].y)
+      return this.move(dir)
     } else {
       delete this.memory.path
       return OK

@@ -1,8 +1,16 @@
+import { Role } from 'creeps/roles'
 import { Strategy } from 'dispatch/strategy'
 
-export const level0: Strategy = {
-  levelUpperBound: 0,
+const roleNumMap: Readonly<{ [key in Role]?: number }> = {
+  miner: 4,
+  builder: 4,
+  upgrader: 4,
+  repairer: 2
+}
+
+export const level1: Strategy = {
+  levelUpperBound: 1,
   run(): void {
-    throw new Error('Function not implemented.')
+    const counter = _.countBy(Memory.creeps, 'role')
   }
 }
