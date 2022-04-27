@@ -16,3 +16,5 @@ export enum Role {
   // 防卫
   DEFENDER = 'defender'
 }
+
+export type RoleNumBodyMap = Readonly<{ [key in Role]?: { num: number; body: BodyPartConstant[] } }>

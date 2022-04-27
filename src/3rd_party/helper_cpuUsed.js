@@ -5,7 +5,6 @@
  * 一键呼出图标
  * HelperCpuUsed.show()
  *
- *
  */
 global.cpuEcharts = (divName, data, data2) => {
   return `
@@ -95,24 +94,3 @@ let pro = {
 }
 
 global.HelperCpuUsed = pro
-
-// if(cpu15t.length==15){
-//     let avg = 0;
-//     let pow2 = 0;
-//     let pow3 = 0;
-//     let max = cpu15t[0]
-//     let min = cpu15t[0]
-//     for(let i=0;i<15;i++){
-//         let num = cpu15t[i];
-//         max = Math.max(max,num)
-//         min = Math.min(min,num)
-//         avg += num;
-//         pow2 += num*num;
-//         pow3 += num*num*num;
-//     }
-//     avg/=15
-//     pow2/=15
-//     pow3/=15
-//     let sigma = Math.sqrt(pow2 - avg*avg)
-//     let skew = (pow3 - 3*avg*sigma*sigma - avg*avg*avg)/(sigma*sigma*sigma)
-//     log(max,min,avg,sigma,skew)

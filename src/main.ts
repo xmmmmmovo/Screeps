@@ -13,7 +13,8 @@ import { cleanDeadCreepsMemory as cleanupDeadCreepsMemory } from 'core/memory'
 // This utility uses source maps to get the line numbers and file names of the original, TS source code
 export const loop = ErrorMapper.wrapLoop(() => {
   // export now status for grafana
-  exportStats()
+  // exportStats()
+  // cleanup dead creep's memory
   cleanupDeadCreepsMemory()
 
   const controller = getSpawn(SpawnName).room.controller

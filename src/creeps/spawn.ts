@@ -1,4 +1,6 @@
+import { logger } from 'core/logger'
 import { Status } from 'global'
+import { Role, RoleNumBodyMap } from './roles'
 
 export function getSpawn(name: string): StructureSpawn {
   return Game.spawns[name]
@@ -8,7 +10,7 @@ export function spawnCreep(
   spawn: StructureSpawn,
   body: BodyPartConstant[],
   memory: CreepMemory,
-  name: string = nameGenerator(spawn)
+  name: string = nameGenerator(spawn, memory.role)
 ): number {
   if (
     spawn.spawnCreep(body, name, {
@@ -24,6 +26,21 @@ export function spawnCreep(
   return res
 }
 
-export function nameGenerator(spawn: StructureSpawn): string {
-  return `creep ${Game.time} ${spawn.room.name}`
+export function nameGenerator(spawn: StructureSpawn, role: Role): string {
+  return `creep ${Game.time} ${spawn.room.name} ${role}`
+}
+
+export function spawnDispatch(
+  spawn: StructureSpawn,
+  getCreepsDetailFunc: () => [CreepMemory, BodyPartConstant[]] | null
+): void {
+  if (spawn.spawning) {
+    return
+  }
+  const res = getCreepsDetailFunc()
+  if (res === null) return
+  const ret = spawnCreep(spawn, res[1], res[0])
+  if (ret === OK) {
+    logger.error('spawn error: ', ret)
+  }
 }
