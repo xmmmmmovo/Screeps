@@ -1,21 +1,16 @@
 // 导入第三方
 import '3rd_party'
-import { SpawnName } from 'core/constant'
+import { SpawnName } from 'constant'
 import { getSpawn } from 'creeps/spawn'
-import { exportStats } from 'core/utils/record'
-import { strategyList } from 'dispatch/strategy'
-import { ErrorMapper } from 'core/utils/error-mapper'
-import { MissionSystem } from 'dispatch/mission'
-import { cleanDeadCreepsMemory as cleanupDeadCreepsMemory } from 'core/memory'
-// import './core/move'
+import { ErrorMapper } from 'core/utils/error_mapper'
+import { cleanDeadCreepsMemory } from 'core/memory'
+import { strategyList } from 'strategy/strategy'
 
 // When compiling TS to JS and bundling with rollup, the line numbers and file names in error messages change
 // This utility uses source maps to get the line numbers and file names of the original, TS source code
 export const loop = ErrorMapper.wrapLoop(() => {
-  // export now status for grafana
-  // exportStats()
   // cleanup dead creep's memory
-  cleanupDeadCreepsMemory()
+  cleanDeadCreepsMemory()
 
   const controller = getSpawn(SpawnName).room.controller
   if (controller === undefined) {
@@ -24,11 +19,10 @@ export const loop = ErrorMapper.wrapLoop(() => {
 
   _.any(strategyList, strategy => {
     if (strategy.levelUpperBound <= controller.level) {
-      strategy.run()
+      console.log(`use ${strategy.levelUpperBound} strategy`)
+      strategy.inLoop()
       return false
     }
     return true
   })
-
-  MissionSystem.excute()
 })

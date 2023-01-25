@@ -1,7 +1,7 @@
-import { IRole } from '.'
+import { IRole } from './roles'
 
-export const miner: IRole = {
-  run(creep: Creep): void {
-    throw new Error('Function not implemented.')
+class Minner implements IRole {
+  run(): void {
+    throw new Error('Method not implemented.')
   }
 }
